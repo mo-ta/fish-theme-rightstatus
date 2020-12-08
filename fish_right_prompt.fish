@@ -54,6 +54,7 @@ set -q color_status_jobs_str; or set color_status_jobs_str cyan
 set -q color_status_private_bg; or set color_status_private_bg black
 set -q color_status_private_str; or set color_status_private_str purple
 
+
 # ===========================
 # Git settings
 # set -g color_dir_bg red
@@ -186,9 +187,9 @@ function get_hostname -d "Set current hostname to prompt variable $HOSTNAME_PROM
   end
 end
 
-function prompt_dir -d "Display the current directory"
-  # prompt_segment $color_dir_bg $color_dir_str (prompt_pwd)
-end
+# function prompt_dir -d "Display the current directory"
+#   # prompt_segment $color_dir_bg $color_dir_str (prompt_pwd)
+# end
 
 
 function prompt_hg -d "Display mercurial state"
@@ -240,7 +241,6 @@ function prompt_git -d "Display the current git state"
   end
 end
 
-
 function prompt_svn -d "Display the current svn state"
   set -l ref
   if command svn info >/dev/null 2>&1
@@ -288,6 +288,24 @@ function prompt_status -d "the symbols for a non zero exit status, root and back
     if [ (jobs -l | wc -l) -gt 0 ]
       prompt_segment $color_status_jobs_bg $color_status_jobs_str "⚙ "
     end
+end
+
+function fish_cursor_name_to_code -a cursor_name -d "Translate cursor name to a cursor code"
+  if [ $cursor_name = "box_blinking" ]
+    echo 1
+  else if [ $cursor_name = "box_steady" ]
+    echo 2
+  else if [ $cursor_name = "underline_blinking" ]
+    echo 3
+  else if [ $cursor_name = "underline_steady" ]
+    echo 4
+  else if [ $cursor_name = "bar_blinking" ]
+    echo 5
+  else if [ $cursor_name = "bar_steady" ]
+    echo 6
+  else
+    echo 2
+  end
 end
 
 # ===========================
