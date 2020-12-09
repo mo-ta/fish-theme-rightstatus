@@ -22,19 +22,19 @@ set fish_cursor_visual      block
 function prompt_vi_mode -d 'vi mode status indicator'
   switch $fish_bind_mode
       case default replace_one
-        set_color $color_vi_mode_normal
+        set_color -o $color_vi_mode_normal
         # set_color -b $color_vi_mode_normal $color_vi_mode_indicator
         echo -s -n "[N]"
       case insert
-        set_color $color_vi_mode_insert
+        set_color -o $color_vi_mode_insert
         # set_color -b $color_vi_mode_insert $color_vi_mode_indicator
         echo -s -n "[I]"
       case visual
-        set_color $color_vi_mode_visual
+        set_color -o $color_vi_mode_visual
         # set_color -b $color_vi_mode_visual $color_vi_mode_indicator
         echo -s -n "[V]"
       case replace
-        set_color $color_vi_mode_replace
+        set_color -o $color_vi_mode_replace
         # set_color -b $color_vi_mode_replace $color_vi_mode_indicator
         echo -s -n "[R]"
     end

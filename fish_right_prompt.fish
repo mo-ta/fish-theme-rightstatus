@@ -14,7 +14,12 @@
 # set -g default_user your_normal_user
 # set -g theme_svn_prompt_enabled yes
 
-
+if test "$current_bg" = NONE 
+  set -l temp_bg black
+else
+  set -l temp_bg $current_bg
+end
+echo $current_bg
 
 set -g current_bg NONE
 set segment_separator '' #\uE0B0
@@ -45,13 +50,17 @@ set -q color_git_bg; or set color_git_bg green
 set -q color_git_str; or set color_git_str black
 set -q color_svn_bg; or set color_svn_bg green
 set -q color_svn_str; or set color_svn_str black
-set -q color_status_nonzero_bg; or set color_status_nonzero_bg black
+# set -q color_status_nonzero_bg; or set color_status_nonzero_bg $temp_bg
+set -q color_status_nonzero_bg; or set color_status_nonzero_bg normal
 set -q color_status_nonzero_str; or set color_status_nonzero_str red
-set -q color_status_superuser_bg; or set color_status_superuser_bg black
+# set -q color_status_superuser_bg; or set color_status_superuser_bg $temp_bg
+set -q color_status_superuser_bg; or set color_status_superuser_bg  normal
 set -q color_status_superuser_str; or set color_status_superuser_str yellow
-set -q color_status_jobs_bg; or set color_status_jobs_bg black
+# set -q color_status_jobs_bg; or set color_status_jobs_bg $temp_bg 
+set -q color_status_jobs_bg; or set color_status_jobs_bg normal
 set -q color_status_jobs_str; or set color_status_jobs_str cyan
-set -q color_status_private_bg; or set color_status_private_bg black
+# set -q color_status_private_bg; or set color_status_private_bg $temp_bg
+set -q color_status_private_bg; or set color_status_private_bg normal
 set -q color_status_private_str; or set color_status_private_str purple
 
 
